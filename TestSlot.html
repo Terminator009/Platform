@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>591300500xxx</title>
+	<style type="text/css">
+	button{
+		font-size: 2em;
+	}
+	td{
+		font-size: 2em;
+		text-align: center;
+		width: 2em;
+		margin: 5px;
+		padding: 5px;
+	}
+	.slotC1{
+		width:75px;
+		height:60px;
+		background-color:Aquamarine;
+	}
+	.slotC2{
+		width:75px;
+		height:60px;
+		background-color:Lavender;
+	}
+	.slotC3{
+		width:75px;
+		height:60px;
+		background-color:Salmon;
+	}
+	.lose{
+		background-color:red;
+	}
+	</style>
+</head>
+<body onload="">
+	<h1>simple slot machine</h1>
+	<table id="table" border=1>
+		<tr id="row1">
+			<td class="slotC1" id="s11"></td>
+			<td class="slotC2" id="s21"></td>
+			<td class="slotC3" id="s31"></td>
+		</tr>
+		<tr id="row2">
+			<td class="slotC1" id="s12"></td>
+			<td class="slotC2" id="s22"></td>
+			<td class="slotC3" id="s32"></td>
+		</tr>
+		<tr id="row3">
+			<td class="slotC1" id="s13"></td>
+			<td class="slotC2" id="s23"></td>
+			<td class="slotC3" id="s33"></td>
+		</tr>
+	</table>
+	<br>
+	<button onclick="spin(1)">spin1</button><button onclick="spin(2)">spin2</button><button onclick="spin(3)">spin3</button>
+	<br>
+	<p id="resultBloct">Result :<span id="result"></span></p>
+	<p id="winBlock">Win score :<span id="winPoint">0</span></p>
+	<p id="loseBlock">Lose score :<span id="losePoint">0</span></p>
+	<br>
+	<button onclick="reMatch()">Try again</button>
+	<script>
+	winscore = 0;
+	losescore = 0;
+	resultNum=0;
+	slotNum =new Array();
+	s11=document.getElementById("s11");
+	s12=document.getElementById("s12");
+	s13=document.getElementById("s13");
+	s21=document.getElementById("s21");
+	s22=document.getElementById("s22");
+	s23=document.getElementById("s23");
+	s31=document.getElementById("s31");
+	s32=document.getElementById("s32");
+	s33=document.getElementById("s33");
+	winPoint=document.getElementById("winPoint");
+	losePoint=document.getElementById("losePoint");
+	result=document.getElementById("result");
+	count=0;
+
+	function spin(num){
+		if(num==1){
+			do{rand=Math.floor(Math.random()*3);
+				slotNum[0]=rand;
+			rand2=Math.floor(Math.random()*3);
+			slotNum[1]=rand2;
+			rand3=Math.floor(Math.random()*3);
+			slotNum[2]=rand3;
+			}while(rand==rand2 | rand2==rand3 | rand3==rand);
+			s11.innerHTML=rand;
+			s12.innerHTML=rand2;
+			s13.innerHTML=rand3;
+			count++;
+		}
+		if(num==2){
+			do{rand=Math.floor(Math.random()*3);
+				slotNum[3]=rand;
+			rand2=Math.floor(Math.random()*3);
+			slotNum[4]=rand2;
+			rand3=Math.floor(Math.random()*3);
+			slotNum[5]=rand3;
+			}while(rand==rand2 | rand2==rand3 | rand3==rand);
+			s21.innerHTML=rand;
+			s22.innerHTML=rand2;
+			s23.innerHTML=rand3;
+			count++;
+		}
+		if(num==3){
+			do{rand=Math.floor(Math.random()*3);
+				slotNum[6]=rand;
+			rand2=Math.floor(Math.random()*3);
+			slotNum[7]=rand2;
+			rand3=Math.floor(Math.random()*3);
+			slotNum[8]=rand3;
+			}while(rand==rand2 | rand2==rand3 | rand3==rand);
+			s31.innerHTML=rand;
+			s32.innerHTML=rand2;
+			s33.innerHTML=rand3;
+			count++;
+		}
+		if(count==3){
+			if((slotNum[0]==slotNum[3]) && (slotNum[3]==slotNum[6])){
+				winscore++;
+				winPoint.innerHTML=winscore;
+				alert("You win 1");
+			}
+			else if((slotNum[1]==slotNum[4]) && (slotNum[4]==slotNum[7])){
+				winscore++;
+				winPoint.innerHTML=winscore;
+				alert("You win 2");
+			}
+			else if((slotNum[2]==slotNum[5]) && (slotNum[5]==slotNum[8])){
+				winscore++;
+				winPoint.innerHTML=winscore;
+				alert("You win 3");
+			}
+			else if((slotNum[0]!=slotNum[3]) || (slotNum[3]!=slotNum[6]) ||
+				(slotNum[1]!=slotNum[4]) || (slotNum[4]!=slotNum[7]) ||
+				(slotNum[2]!=slotNum[5]) || (slotNum[5]!=slotNum[8])){
+				alert("You lose");
+				losescore++;
+				losePoint.innerHTML=losescore;
+				document.getElementById("s11").style.backgroundColor;
+			}
+			count=0;
+			resultNum++;
+			result.innerHTML=resultNum;
+		}
+	}
+	function reMatch(){
+		s11.innerHTML="";
+		s12.innerHTML="";
+		s13.innerHTML="";
+		s21.innerHTML="";
+		s22.innerHTML="";
+		s23.innerHTML="";
+		s31.innerHTML="";
+		s32.innerHTML="";
+		s33.innerHTML="";
+		losePoint.innerHTML="";
+		winPoint.innerHTML="";
+		result.innerHTML="";
+		resultNum=0;
+		winscore=0;
+		losescore=0;
+		slotNum[0]=null;
+		slotNum[1]=null;
+		slotNum[2]=null;
+		slotNum[3]=null;
+		slotNum[4]=null;
+		slotNum[5]=null;
+		slotNum[6]=null;
+		slotNum[7]=null;
+		slotNum[8]=null;
+
+	}
+	</script>
+</body>
+</html>

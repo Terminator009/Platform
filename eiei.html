@@ -1,0 +1,132 @@
+<html>
+<head>
+	<title>Slot Machine</title>
+	<script type="text/javascript">
+		var rand1=Math.floor(Math.random()*(2-0+1))+0;
+		var rand2=Math.floor(Math.random()*(2-0+1))+0;
+		var rand3=Math.floor(Math.random()*(2-0+1))+0;
+		var check=new Array();
+		var winpoint=0;
+	    var alreadyClick=0;
+		for(i=0;i<3;i++){
+			for(j=0;j<3;j++){
+
+			}
+		}
+		function pullLeaver(num){
+			console.log("จำนวนครั้งที่กด :"+alreadyClick);
+			alreadyClick++;
+			if(num==1){
+				
+				do{
+					rand1=Math.floor(Math.random()*(2-0+1))+0;
+					check[0]=rand1;
+					rand2=Math.floor(Math.random()*(2-0+1))+0;
+					check[1]=rand2;
+					rand3=Math.floor(Math.random()*(2-0+1))+0;
+					check[2]=rand3;
+				}while(rand2==rand1 | rand1==rand3 |rand3==rand2);
+				document.getElementById('11').innerHTML=rand1;
+				document.getElementById('12').innerHTML=rand2;
+				document.getElementById('13').innerHTML=rand3;
+			}
+			if(num==2){
+				
+				do{
+					rand1=Math.floor(Math.random()*(2-0+1))+0;
+					check[3]=rand1;
+					rand2=Math.floor(Math.random()*(2-0+1))+0;
+					check[4]=rand2;
+					rand3=Math.floor(Math.random()*(2-0+1))+0;
+					check[5]=rand3;
+				}while(rand2==rand1 | rand1==rand3 |rand3==rand2);
+				document.getElementById('21').innerHTML=rand1;
+				document.getElementById('22').innerHTML=rand2;
+				document.getElementById('23').innerHTML=rand3;
+			}
+			if(num==3){
+				
+				do{
+					rand1=Math.floor(Math.random()*(2-0+1))+0;
+					check[6]=rand1;
+					rand2=Math.floor(Math.random()*(2-0+1))+0;
+					check[7]=rand2;
+					rand3=Math.floor(Math.random()*(2-0+1))+0;
+					check[8]=rand3;
+				}while(rand2==rand1 | rand1==rand3 |rand3==rand2);
+				document.getElementById('31').innerHTML=rand1;
+				document.getElementById('32').innerHTML=rand2;
+				document.getElementById('33').innerHTML=rand3;
+			}
+			if(alreadyClick==3){
+
+				if(check[0]==check[3]&check[0]==check[6]&check[3]==check[6]){
+					alert('Hello แถวบน');
+					winpoint++;
+				}
+				if(check[1]==check[4]&check[1]==check[7]&check[4]==check[7]){
+					alert('Hello แถวกลาง');
+					winpoint++;
+				}
+
+				if(check[2]==check[5]&check[2]==check[8] & check[5]==check[8]){
+					alert('Hello แถวล่าง');
+					winpoint++;
+				}
+				document.getElementById('show').innerHTML=winpoint;
+
+
+
+			}
+
+		}
+
+		function son(){
+			document.getElementById('aey').style="background-color=wheat";
+			alreadyClick=0;
+			console.log('กดปุ่ม clear นะ');
+			document.getElementById('11').innerHTML='';
+			document.getElementById('12').innerHTML='';
+			document.getElementById('13').innerHTML='';
+
+			document.getElementById('21').innerHTML='';
+			document.getElementById('22').innerHTML='';
+			document.getElementById('23').innerHTML='';
+
+			document.getElementById('31').innerHTML='';
+			document.getElementById('32').innerHTML='';
+			document.getElementById('33').innerHTML='';
+
+		}
+
+		
+
+
+	</script>
+	<style type="text/css">
+		button{
+			width:170;
+			height:70; 
+		}
+
+
+	</style>
+
+
+</head>
+<body>
+	<!--colunm and row -->
+	<table border="1" width="500" height="500" id="aey" >
+		<tr><td id="11"></td>	<td id="21"></td>	<td id="31"></td></tr>
+		<tr><td id="12"></td>	<td id="22"></td>	<td id="32"></td></tr>
+		<tr><td id="13"></td>	<td id="23"></td>	<td id="33"></td></tr>	
+	</table>
+	<button onclick="pullLeaver(1)"></button><button onclick="pullLeaver(2)"></button><button onclick="pullLeaver(3)"></button>
+	<br>
+	<button style="width:500;" onclick="son()">Reset</button>
+
+	<p>Win point : <span id="show"></span></p>
+
+
+</body>
+</html>

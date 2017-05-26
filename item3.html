@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>581300500xxx</title>
+	<style>
+	body{
+		font-size: 2em;
+	}
+	td{
+		width: 2em;
+		height: 2em;
+	}
+	button{
+		width: 100%;
+		height: 100%;
+		font-size: 2em;
+	}
+	#win{
+		color: green;
+	}
+	#lose{
+		color: red;
+	}
+	</style>
+</head>
+<body>
+	<h1>Hammer Scissor Paper Game</h1>
+	<table id="table" bordercolor="black" >
+		<tr>
+			<td id="Scissor" width="200" height="200"><img src="scissors.png"width="135" height="135" onclick="clickScissor()"></td>
+			<td id="Paper"><img src="Paper.ico" width="135" height="135" onclick="clickPaper()"></td>
+			<td id="Hammer"><img src="Hammer.ico" width="135" height="135" onclick="clickHammer()"></td>
+		</tr>
+	</table>
+	<span>vs</span>
+	<img id ="computer"src="Bot.png"width="135" height="135">
+
+	<p id="win">Win score : <span id="winBox">0</span></p>
+	<p id="lose">Lose score : <span id="loseBox">0</span></p>
+	<script>
+	/*Hint Math.random() return number between 0 and 1
+			Math.floor(x) Returns x, rounded downwards to the nearest integer
+			Math.ceil(x) 	Returns x, rounded upwards to the nearest integer.*/
+			
+			
+			winBox =document.getElementById('winBox');
+			loseBox =document.getElementById('loseBox');
+			bot=document.getElementById('computer');
+			winPoints=0;
+			losePoints=0;
+			function clickScissor() {
+				document.getElementById('table').style="background-color=red";
+				scissors=1;
+				randNum = Math.floor(Math.random() * 3) + 1 ;
+				switch(randNum)
+				{
+					case 1:
+						bot.src="scissors.png";
+						break;
+					case 2:
+						bot.src="Paper.ico";
+						break;
+					case 3:
+						bot.src="Hammer.ico";
+						break;
+				}
+				if (scissors==1 && randNum==1) {
+					alert("Draw");
+				}
+				if (scissors==1 && randNum==2) {
+					alert("Win");
+					++winPoints;
+					winBox.innerHTML=winPoints;
+				}
+				if (scissors==1 && randNum==3) {
+					alert("Lose");
+					++losePoints;
+					loseBox.innerHTML=losePoints;
+				}
+			}
+			function clickPaper(){
+				paper=1;
+				randNum=Math.floor(Math.random()*3)+1;
+				switch(randNum){
+					case 1:
+						bot.src="scissors.png";
+						break;
+					case 2:
+						bot.src="Paper.ico";
+						break;
+					case 3:
+						bot.src="Hammer.ico";
+						break;
+				}
+				if(paper==1 && randNum==1){
+					alert("Lose");
+					++losePoints;
+					loseBox.innerHTML=losePoints;
+				}
+				if(paper==1 && randNum==2){
+					alert("Draw");
+				}
+				if(paper==1 && randNum==3){
+					alert("Win");
+				}
+			}
+			function clickHammer(){
+				Hammer =1;
+				randNum=Math.floor(Math.random()*3)+1;
+				switch(randNum){
+					case 1:
+						bot.src="scissors.png";
+						break;
+					case 2:
+						bot.src="Paper.ico";
+						break;
+					case 3:
+						bot.src="Hammer.ico";
+				}
+				if(Hammer==1 && randNum==1){
+					alert("Win");
+					winBox.innerHTML=++winPoints;
+				}
+				if(Hammer==1 && randNum==2){
+					alert("Lose");
+					loseBox.innerHTML=++loseBox;
+				}
+				if(Hammer==1 && randNum==3){
+					alert("Draw");
+				}
+			}
+	</script>
+
+</body>
+</html>
